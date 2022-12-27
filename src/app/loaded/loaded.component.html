@@ -1,4 +1,4 @@
-<div style="border: 1px solid red" *ngFor="let d of actualData">
+<div style="border: 1px solid red" *ngFor="let d of actualData; trackBy: trackByFn">
     <app-card [actualData]="d"></app-card>
 </div>
 

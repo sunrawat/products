@@ -1,4 +1,55 @@
+<!-- <div>
+    <input
+    [timePicker]="true"
+      ngxDaterangepickerMd
+      [closeOnAutoApply]="true"
+      [autoApply]="true"
+      [linkedCalendars]="true"
+      [(ngModel)]="selected"
+      (datesUpdated)="datesUpdated($event)"
+      class="datepicker-calendar-icon">
 
+    <span class="a ngx-daterangepicker-action" (click)="openDatepicker()">
+    </span>    
+</div> -->
+{{isFocus}}
+<div>
+  <!-- <input type="text" [(ngModel)]="search" (focus)="onFocus()" (blur)="onBlur()" /> -->
 
-<router-outlet></router-outlet>
-<a routerLink="/test">test</a>
+  <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           oninput="this.value = this.value.toLowerCase();"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)='getPosts($event.option.value)'>
+            <mat-option *ngFor="let option of filteredOptions | async | highlight: myControl.value" [value]="option">
+              <span [innerHTML]="option"></span>
+            </mat-option>
+          </mat-autocomplete>
+  <ng-container>
+    <!-- {{ myControl.value}}
+    <div
+    *ngFor="let d of data.body | searchPipe: myControl.value"
+    style="border: 1px solid gray; padding: 10px;background: #eee"
+  >
+    <span [innerHTML]="d.searchTearm| highlight: search"></span>
+  </div> -->
+  </ng-container>
+  
+  <div>
+    <div
+      style="padding:20px;"
+      *ngFor="let d1 of data.body | searchPipe: myControl.value"
+    >
+      {{ d1.name }}
+      <div style="padding-left:30px" *ngFor="let d2 of d1.subcategories">
+        {{ d2.name }}
+        <div style="padding-left:40px" *ngFor="let d3 of d2.subcategories">
+          {{ d3.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

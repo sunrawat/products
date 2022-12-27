@@ -29,5 +29,7 @@ export class LoadedComponent implements OnInit {
     // timer();
    this.actualData = this.data;
   }
-
+  trackByFn(index: number, item: any) {
+    return index;
+  }
 }
